@@ -17,12 +17,14 @@ jobs:
         uses: JamesIves/fetch-api-data-action@v2
         with:
           endpoint: https://fantasy.premierleague.com/api/leagues-classic/1624991/standings/
+          configuration: '{ "method": "GET", }'
           save-name: weeklydata
 
       - name: Fetch Yearly Data 📦
         uses: JamesIves/fetch-api-data-action@v2
         with:
           endpoint: https://fantasy.premierleague.com/api/leagues-classic/1625087/standings/
+          configuration: '{ "method": "GET", }'
           save-name: yearlydata
 
       - name: Build and Deploy 🚀
