@@ -1,82 +1,119 @@
-/* Dark Material Theme */
+/* General styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #121212;
-    color: #ffffff;
+    background-color: #f5f5f5;
     margin: 0;
     padding: 0;
 }
 
 header {
-    background-color: #1e1e1e;
-    padding: 10px;
+    background-color: #009688; /* Teal color */
+    color: #ffffff;
+    padding: 20px;
     text-align: center;
 }
 
-h1 {
+header h1 {
     margin: 0;
 }
 
-select {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 5px;
-    border-radius: 4px;
+nav {
+    margin-top: 10px;
+}
+
+nav select {
+    padding: 10px;
+    font-size: 16px;
 }
 
 main {
     padding: 20px;
 }
 
-.tab-content {
-    display: none;
+.table-wrapper {
+    margin-top: 20px;
+    overflow-x: auto; /* Allow horizontal scrolling for small screens */
 }
 
-.tab-content.active {
-    display: block;
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-.leaderboard-item {
-    display: flex;
-    align-items: center;
-    background: #1e1e1e;
-    margin: 10px 0;
+.leaderboard-table th,
+.leaderboard-table td {
     padding: 10px;
-    border-radius: 4px;
+    text-align: left;
+    border: 1px solid #ddd;
 }
 
-.material-icons {
-    font-size: 48px;
+.leaderboard-table th {
+    background-color: #009688; /* Teal color */
+    color: #ffffff;
+}
+
+.leaderboard-table tr:nth-child(even) {
+    background-color: #e0f2f1; /* Light teal color */
+}
+
+.leaderboard-table tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.leaderboard-table td.points {
+    text-align: right;
+}
+
+.top-team {
+    font-weight: bold;
+}
+
+.team-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.medal-icon {
+    font-size: 24px;
     margin-right: 10px;
 }
 
-.icon-gold {
-    color: #ffd700;
-}
-
-.icon-silver {
-    color: #c0c0c0;
-}
-
-.icon-bronze {
-    color: #cd7f32;
-}
-
-.details h2 {
+.team-name {
+    font-size: 1.1em;
     margin: 0;
 }
 
-.details p {
-    margin: 5px 0;
+.manager-name {
+    font-size: 0.9em;
+    color: #757575;
 }
 
 footer {
-    background-color: #1e1e1e;
-    color: #888;
+    background-color: #009688; /* Teal color */
+    color: #ffffff;
     text-align: center;
     padding: 10px;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
+}
+
+@media only screen and (max-width: 600px) {
+    .team-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .team-name {
+        font-size: 1em;
+    }
+
+    .manager-name {
+        font-size: 0.8em;
+    }
+
+    .leaderboard-table {
+        font-size: 0.8em;
+    }
+
+    footer {
+        font-size: 0.8em;
+    }
 }
