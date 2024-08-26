@@ -28,6 +28,12 @@ jobs:
       - name: Run the Python script
         run: python fetch-gw-data.py
 
+        # Move or ensure output is in the 'data/' folder
+      - name: Move output to data folder
+        run: |
+          mkdir -p data
+          mv Gameweek*.txt data/ || true
+
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions[bot]"
