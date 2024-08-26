@@ -30,5 +30,5 @@ getyearlytop = pd.json_normalize(gw['results'])
 getyearlytopresult = getweeklytop[['rank', 'entry_name', 'player_name', 'event_total']]
 
 # Save to file
-getweeklytopresult.to_csv(cgws, index=False)
-getyearlytopresult.to_csv(cgwy, index=False)
+getweeklytopresult.to_csv(data/cgws, index=False)
+getyearlytopresult.to_csv(data/cgwy, index=False)
