@@ -1,9 +1,10 @@
-name: Fetch gameweek data
-
+name: Fetch GW Data Python
 on:
   schedule:
-     - cron: 0 0 * * 0 # Runs at 00:00 UTC every Sunday
+    - cron: 0 0 * * 0
   workflow_dispatch:
+permissions:
+  contents: write:
 
 jobs:
   run-python:
