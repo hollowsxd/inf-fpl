@@ -27,7 +27,7 @@ getweeklytopresult = getweeklytop[['rank', 'entry_name', 'player_name', 'event_t
 
 # Put data into pandas for yearly
 getyearlytop = pd.json_normalize(gw['results'])
-getyearlytopresult = getweeklytop[['rank', 'entry_name', 'player_name', 'total']]
+getyearlytopresult = getyearlytop[['rank', 'entry_name', 'player_name', 'total']]
 
 # Save to file
 getweeklytopresult.to_json(cgws, index=False)
