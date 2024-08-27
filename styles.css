@@ -1,119 +1,103 @@
-/* General styles */
+/* General body styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    font-family: 'Roboto', sans-serif; /* Use Roboto font */
     margin: 0;
     padding: 0;
+    background-color: #121212; /* Dark background for the entire page */
+    color: #e0e0e0; /* Light text color for readability */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-header {
-    background-color: #009688; /* Teal color */
-    color: #ffffff;
-    padding: 20px;
+/* Container styles */
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #1e1e1e; /* Darker background for the container */
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6); /* Softer shadow */
     text-align: center;
 }
 
-header h1 {
-    margin: 0;
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #ffcc00; /* Highlight color for the header */
 }
 
-nav {
-    margin-top: 10px;
-}
-
-nav select {
+/* Dropdown menu */
+#gameweekSelector {
     padding: 10px;
-    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #333;
+    color: #e0e0e0;
+    font-size: 1em;
+    margin-bottom: 20px;
+    cursor: pointer;
 }
 
-main {
-    padding: 20px;
-}
-
-.table-wrapper {
-    margin-top: 20px;
-    overflow-x: auto; /* Allow horizontal scrolling for small screens */
-}
-
+/* Table styles */
 .leaderboard-table {
     width: 100%;
     border-collapse: collapse;
+    margin: 20px 0;
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-.leaderboard-table th,
-.leaderboard-table td {
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #ddd;
+.leaderboard-table thead {
+    background-color: #444; /* Slightly lighter dark background */
+    color: #fff; /* White text color for headers */
 }
 
-.leaderboard-table th {
-    background-color: #009688; /* Teal color */
-    color: #ffffff;
+.leaderboard-table th, .leaderboard-table td {
+    padding: 12px;
+    text-align: center; /* Center the text in the cells */
 }
 
-.leaderboard-table tr:nth-child(even) {
-    background-color: #e0f2f1; /* Light teal color */
+.leaderboard-table tbody tr:nth-child(even) {
+    background-color: #1c1c1c; /* Darker row background for even rows */
 }
 
-.leaderboard-table tr:nth-child(odd) {
-    background-color: #ffffff;
+.leaderboard-table tbody tr:nth-child(odd) {
+    background-color: #2c2c2c; /* Slightly lighter row background for odd rows */
+}
+
+.leaderboard-table tbody tr:hover {
+    background-color: #333; /* Highlight row on hover */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.leaderboard-table td.team-info {
+    text-align: left; /* Align the team name and manager to the left */
 }
 
 .leaderboard-table td.points {
-    text-align: right;
+    text-align: right; /* Align points to the right */
 }
 
-.top-team {
+/* Style for rank medals */
+.leaderboard-table td:first-child {
+    text-align: center;
+    color: #ffd700; /* Gold color for medals */
+}
+
+/* Top teams styling */
+.team-name {
     font-weight: bold;
 }
 
-.team-info {
-    display: flex;
-    flex-direction: column;
-}
-
-.medal-icon {
-    font-size: 24px;
-    margin-right: 10px;
-}
-
-.team-name {
-    font-size: 1.1em;
-    margin: 0;
+.top-team {
+    color: #ffcc00; /* Highlight top teams */
 }
 
 .manager-name {
-    font-size: 0.9em;
-    color: #757575;
-}
-
-footer {
-    background-color: #009688; /* Teal color */
-    color: #ffffff;
-    text-align: center;
-    padding: 10px;
-}
-
-@media only screen and (max-width: 600px) {
-    .team-info {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .team-name {
-        font-size: 1em;
-    }
-
-    .manager-name {
-        font-size: 0.8em;
-    }
-
-    .leaderboard-table {
-        font-size: 0.8em;
-    }
-
-    footer {
-        font-size: 0.8em;
-    }
+    font-size: 0.8em;
+    color: #b0b0b0; /* Lighter color for manager names */
 }
