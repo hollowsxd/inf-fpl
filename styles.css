@@ -6,8 +6,7 @@ body {
     background-color: #121212; /* Dark background for the entire page */
     color: #e0e0e0; /* Light text color for readability */
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column; /* Ensure footer stays at the bottom */
     height: 100vh;
 }
 
@@ -21,6 +20,7 @@ body {
     border-radius: 12px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6); /* Softer shadow */
     text-align: center;
+    flex: 1; /* Allow container to grow and push footer to the bottom */
 }
 
 h1 {
@@ -100,4 +100,14 @@ h1 {
 .manager-name {
     font-size: 0.8em;
     color: #b0b0b0; /* Lighter color for manager names */
+}
+
+/* Footer styles */
+footer {
+    background-color: #1e1e1e; /* Darker background for footer */
+    color: #b0b0b0; /* Lighter text color for footer */
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 0.8em;
+    border-top: 1px solid #333; /* Slightly lighter top border */
 }
