@@ -3,8 +3,8 @@ function initializeDropdown() {
     const dropdown = document.getElementById('gameweekSelector');
     const tabContents = document.getElementById('tabContents');
     
-    // List of available gameweeks
-    const gameweeks = [1, 2, 3, 4, 5]; // Update this list as needed
+    // Updated list of gameweeks from 1 to 38
+    const gameweeks = Array.from({ length: 38 }, (_, i) => i + 1);
 
     gameweeks.forEach(week => {
         const option = document.createElement('option');
@@ -25,11 +25,11 @@ function initializeDropdown() {
 
 // Function to fetch and display data for the selected gameweek
 function fetchGameweekData(week) {
-    const url = `gameweek${week}.json`; // URL to fetch JSON data for the selected gameweek
+    const url = `data/Gameweek ${week} Weekly.json`; // URL to fetch JSON data for the selected gameweek
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            const results = data.standings.results;
+            const results = processData(data);
             const content = document.getElementById('tabContents');
             content.innerHTML = generateLeaderboardData(results); // Populate content with leaderboard only
         })
@@ -40,14 +40,24 @@ function fetchGameweekData(week) {
         });
 }
 
+// Function to process raw JSON data into a format suitable for the leaderboard
+function processData(data) {
+    return Object.keys(data.rank).map(index => ({
+        rank: data.rank[index],
+        entry_name: data.entry_name[index],
+        player_name: data.player_name[index],
+        total: data.event_total[index]
+    }));
+}
+
 // Function to generate leaderboard table HTML based on the results
 function generateLeaderboardData(results) {
     let html = '<table class="leaderboard-table"><thead><tr><th>Rank</th><th>Team</th><th>Points</th></tr></thead><tbody>';
     results.forEach((team, index) => {
-        const medal = index === 0 ? '🥇' : (index === 1 ? '🥈' : (index === 2 ? '🥉' : ''));
+        const medal = team.rank === 1 ? '🥇' : (team.rank === 2 ? '🥈' : (team.rank === 3 ? '🥉' : ''));
         html += `<tr>
                     <td>${medal}</td>
-                    <td class="team-info"><span class="team-name ${index < 3 ? 'top-team' : ''}">${team.entry_name}</span><div class="manager-name">${team.player_name}</div></td>
+                    <td class="team-info"><span class="team-name ${team.rank <= 3 ? 'top-team' : ''}">${team.entry_name}</span><div class="manager-name">${team.player_name}</div></td>
                     <td class="points">${team.total}</td>
                  </tr>`;
     });
