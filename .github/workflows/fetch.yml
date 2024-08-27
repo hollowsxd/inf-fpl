@@ -32,14 +32,14 @@ jobs:
       - name: Move output to data folder
         run: |
           mkdir -p data
-          mv Gameweek*.txt data/ || true
+          mv Gameweek*.json data/ || true
 
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "Weekly data fetch"
+          git add data/
+          git diff --cached --quiet || git commit -m "Weekly data fetch"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub's token to authenticate push
