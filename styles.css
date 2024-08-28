@@ -12,10 +12,10 @@ body {
 
 /* Container styles */
 .container {
-    width: 100%;
+    width: 90%;
     max-width: 900px;
     margin: 0 auto;
-    padding: 30px;
+    padding: 20px;
     background-color: #1e1e1e; /* Darker background for the container */
     border-radius: 12px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6); /* Softer shadow */
@@ -23,29 +23,31 @@ body {
     flex: 1; /* Allow container to grow and push footer to the bottom */
 }
 
+/* Heading styles */
 h1 {
-    font-size: 2em;
-    margin-bottom: 20px;
+    font-size: 1.5em; /* Adjusted font size for better readability on smaller screens */
+    margin-bottom: 15px;
     color: #ffcc00; /* Highlight color for the header */
 }
 
 /* Dropdown menu */
 #gameweekSelector {
-    padding: 10px;
+    padding: 8px;
     border: none;
     border-radius: 8px;
     background-color: #333;
     color: #e0e0e0;
-    font-size: 1em;
-    margin-bottom: 20px;
+    font-size: 0.9em;
+    margin-bottom: 15px;
     cursor: pointer;
+    width: 100%;
 }
 
 /* Table styles */
 .leaderboard-table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
+    margin: 15px 0;
     border: 1px solid #333;
     border-radius: 8px;
     overflow: hidden;
@@ -57,7 +59,7 @@ h1 {
 }
 
 .leaderboard-table th, .leaderboard-table td {
-    padding: 12px;
+    padding: 10px; /* Slightly reduced padding for smaller screens */
     text-align: center; /* Center the text in the cells */
 }
 
@@ -106,8 +108,50 @@ h1 {
 footer {
     background-color: #1e1e1e; /* Darker background for footer */
     color: #b0b0b0; /* Lighter text color for footer */
-    padding: 10px 20px;
+    padding: 10px 15px; /* Adjusted padding */
     text-align: center;
     font-size: 0.8em;
     border-top: 1px solid #333; /* Slightly lighter top border */
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.2em; /* Further reduced font size for small screens */
+    }
+
+    #gameweekSelector {
+        font-size: 0.8em;
+    }
+
+    .leaderboard-table th, .leaderboard-table td {
+        padding: 8px; /* Further reduced padding */
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1em; /* Smallest font size for very small screens */
+    }
+
+    #gameweekSelector {
+        font-size: 0.7em;
+    }
+
+    .leaderboard-table th, .leaderboard-table td {
+        padding: 6px; /* Minimized padding for very small screens */
+    }
+
+    footer {
+        padding: 8px 10px; /* Adjusted padding for very small screens */
+        font-size: 0.7em; /* Slightly smaller font size */
+    }
 }
