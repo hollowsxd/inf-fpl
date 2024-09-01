@@ -17,7 +17,7 @@ getall = requests.get(base_url+'bootstrap-static/').json()
 getgw = pd.json_normalize(getall['events'])
 getgwlist = getgw[['name','is_current']]
 getcurrentgw = getgwlist[getgwlist["is_current"] == True]
-currentgw = getcurrentgw.at[1, 'name']
+currentgw = getcurrentgw.iloc[0]['name']
 cgws = str(currentgw) + " Weekly.json"
 cgwy = str(currentgw) + " Yearly.json"
 
