@@ -36,6 +36,7 @@ jobs:
         run: |
           mkdir -p data
           mv Gameweek*.json data/ || true
+          mv latestgw.txt data/ || true
 
       - name: Commit and push changes
         run: |
