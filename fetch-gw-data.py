@@ -32,3 +32,6 @@ getyearlytopresult = getyearlytop[['rank', 'entry_name', 'player_name', 'total']
 # Save to file
 getweeklytopresult.to_json(cgws, index=False)
 getyearlytopresult.to_json(cgwy, index=False)
+with open ('latestgw.txt', 'w') as file
+  file.write(currentgw)
+
