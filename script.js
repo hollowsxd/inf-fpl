@@ -13,9 +13,26 @@ function initializeDropdown() {
         dropdown.appendChild(option);
     });
 
-    // Set default option and fetch data for the first gameweek
-    dropdown.value = gameweeks[0];
-    fetchGameweekData(gameweeks[0]);
+    // Fetch the initial gameweek from gw.txt
+    fetch('data/latestgw.txt')
+        .then(response => response.text())
+        .then(text => {
+            const match = text.match(/Gameweek (\d+)/);
+            if (match) {
+                const initialWeek = parseInt(match[1], 10);
+                dropdown.value = initialWeek;
+                fetchGameweekData(initialWeek);
+            } else {
+                console.error('Invalid content in gw.txt');
+                dropdown.value = gameweeks[0]; // fallback to the first gameweek if the content is invalid
+                fetchGameweekData(gameweeks[0]);
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching gw.txt:', error);
+            dropdown.value = gameweeks[0]; // fallback to the first gameweek if there is an error
+            fetchGameweekData(gameweeks[0]);
+        });
 
     // Add event listener to handle gameweek changes
     dropdown.addEventListener('change', (event) => {
