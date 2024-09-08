@@ -30,6 +30,28 @@ h1 {
     color: #ffcc00; /* Highlight color for the header */
 }
 
+/* Button styles */
+.btn-primary {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ffcc00; /* Primary button color */
+    color: #121212; /* Text color */
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #e0b800; /* Darker shade on hover */
+}
+
+.btn-primary:active {
+    background-color: #cc9c00; /* Even darker shade on click */
+    transform: scale(0.98); /* Slightly shrink button on click */
+}
+
 /* Dropdown menu */
 #gameweekSelector {
     padding: 8px;
@@ -129,6 +151,10 @@ footer {
 
     .leaderboard-table th, .leaderboard-table td {
         padding: 8px; /* Further reduced padding */
+    }
+
+    .btn-primary {
+        font-size: 0.9em;
     }
 }
 
