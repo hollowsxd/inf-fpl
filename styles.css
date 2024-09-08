@@ -77,11 +77,11 @@ h1 {
 }
 
 .leaderboard-table td.team-info {
-    text-align: left; /* Align the team name and manager to the left */
+    text-align: centre; /* Align the team name and manager to the centre */
 }
 
 .leaderboard-table td.points {
-    text-align: right; /* Align points to the right */
+    text-align: centre; /* Align points to the centre */
 }
 
 /* Style for rank medals */
