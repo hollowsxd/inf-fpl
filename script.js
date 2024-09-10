@@ -14,6 +14,7 @@ async function initializeDropdown() {
         // Set the dropdown value to the latest gameweek and fetch data for it
         dropdown.value = latestGameweek;
         await fetchGameweekData(latestGameweek);
+        
     } catch (error) {
         console.error('Error initializing gameweek:', error);
         dropdown.value = 1; // Fallback to the first gameweek if there's an error
@@ -26,14 +27,18 @@ async function initializeDropdown() {
     });
 }
 
-// Populate the dropdown with gameweek options up to the latest week
+// Populate the dropdown with gameweek options up to the latest gameweek
 function populateDropdown(dropdown, latestGameweek) {
+    const fragment = document.createDocumentFragment(); // Create a DocumentFragment
+
     for (let week = 1; week <= latestGameweek; week++) {
         const option = document.createElement('option');
         option.value = week;
         option.textContent = `Gameweek ${week}`;
-        dropdown.appendChild(option);
+        fragment.appendChild(option); // Append each option to the fragment
     }
+
+    dropdown.appendChild(fragment); // Append the fragment to the dropdown once
 }
 
 // Fetch the initial gameweek from gw.txt
@@ -57,6 +62,7 @@ async function fetchInitialGameweek() {
 async function fetchGameweekData(week) {
     const url = `data/Gameweek ${week} Weekly.json`; // URL to fetch JSON data for the selected gameweek
     showLoadingMessage();
+    
     try {
         const response = await fetch(url);
         const data = await response.json();
