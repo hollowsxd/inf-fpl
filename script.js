@@ -107,7 +107,6 @@ function generateLeaderboardData(results) {
     }).join('');
 
     return `
-    <h1>Gameweek ${week} Winners</h1>
         <table class="leaderboard-table">
             <thead>
                 <tr><th>Rank</th><th>Team</th><th>Points</th></tr>
