@@ -77,7 +77,7 @@ function displayResults(teamWins, teamManagers) {
     }
 
     resultsDiv.innerHTML = `
-        <h1>Team Wins Leaderboard</h1>
+    <h1>Most Wins By Team</h1>
         <table class="leaderboard-table">
             <thead>
                 <tr>
@@ -117,11 +117,18 @@ function getMedalEmoji(rank) {
 // Function to load and display the leaderboard when the button is clicked
 async function loadLeaderboard() {
     const latestGameweek = await getLatestGameweek();
+    showLoadingMessage();
     if (latestGameweek !== null) {
         countWins(1, latestGameweek); // Scan weeks from 1 to the latest gameweek
     } else {
         console.error('Unable to determine the latest gameweek.');
     }
+}
+
+// Show loading message while fetching data
+function showLoadingMessage() {
+    const content = document.getElementById('tabContents');
+    content.innerHTML = '<p>Loading data...</p>';
 }
 
 // Attach event listener to the button
