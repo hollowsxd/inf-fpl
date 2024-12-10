@@ -50,29 +50,19 @@ async function countWins(startWeek, endWeek) {
 // Function to process data for a specific week
 function processWeekData(data, teamWins, teamManagers) {
     if (data.rank && data.entry_name && data.player_name && data.points) {
-        const teamsWithPoints = [];
+        const pointsMap = {};
 
-        // Gather top 3 teams with their points, rank, team name, and manager
-        Object.keys(data.rank).forEach(key => {
-            const rank = data.rank[key];
-            if (rank <= 3) { // Only consider top 3 teams
-                teamsWithPoints.push({
-                    rank,
-                    teamName: data.entry_name[key],
-                    managerName: data.player_name[key],
-                    points: data.points[key],
-                });
+        // Group teams by their points
+        Object.keys(data.points).forEach(key => {
+            const points = data.points[key];
+            const teamName = data.entry_name[key];
+            const managerName = data.player_name[key];
+
+            if (!pointsMap[points]) {
+                pointsMap[points] = [];
             }
+            pointsMap[points].push({ teamName, managerName });
         });
-
-        // Group teams with the same points
-        const pointsMap = teamsWithPoints.reduce((map, team) => {
-            if (!map[team.points]) {
-                map[team.points] = [];
-            }
-            map[team.points].push(team);
-            return map;
-        }, {});
 
         // Assign fractional wins for teams with the same points
         Object.values(pointsMap).forEach(teams => {
