@@ -49,12 +49,19 @@ async function countWins(startWeek, endWeek) {
 
 // Function to process data for a specific week
 function processWeekData(data, teamWins, teamManagers) {
-    if (data.rank && data.entry_name && data.player_name && data.points) {
-        const pointsMap = {};
+    if (!data.event_total || !data.entry_name || !data.player_name) {
+        console.error("Data is missing required properties:", data);
+        return;
+    }
 
+    const pointsMap = {};
+    const rankOnePoints = data.event_total[data.rank[0]];  // Points of the rank 1 team
+    const rankOneTeams = [];
+
+    try {
         // Group teams by their points
-        Object.keys(data.points).forEach(key => {
-            const points = data.points[key];
+        Object.keys(data.event_total).forEach(key => {
+            const points = data.event_total[key];
             const teamName = data.entry_name[key];
             const managerName = data.player_name[key];
 
@@ -62,21 +69,37 @@ function processWeekData(data, teamWins, teamManagers) {
                 pointsMap[points] = [];
             }
             pointsMap[points].push({ teamName, managerName });
+
+            // Identify rank 1 team points
+            if (points === rankOnePoints) {
+                rankOneTeams.push({ teamName, managerName });
+            }
         });
 
-        // Assign fractional wins for teams with the same points
-        Object.values(pointsMap).forEach(teams => {
-            const winShare = 1 / teams.length; // Split win among tied teams
-            teams.forEach(({ teamName, managerName }) => {
+        // If there are multiple teams with the same points as rank 1, they share the win
+        if (rankOneTeams.length > 1) {
+            const winShare = 1 / rankOneTeams.length;  // Fractional win for rank 1 teams
+            rankOneTeams.forEach(({ teamName, managerName }) => {
                 if (!teamWins[teamName]) {
                     teamWins[teamName] = 0;
                     teamManagers[teamName] = managerName;
                 }
                 teamWins[teamName] += winShare;
             });
-        });
-    } else {
-        console.error('Data format is incorrect:', data);
+        } else {
+            // Only the rank 1 team gets the full win
+            const rankOneTeam = rankOneTeams[0];
+            if (!teamWins[rankOneTeam.teamName]) {
+                teamWins[rankOneTeam.teamName] = 0;
+                teamManagers[rankOneTeam.teamName] = rankOneTeam.managerName;
+            }
+            teamWins[rankOneTeam.teamName] += 1;
+        }
+
+        // Other teams get 0 wins, no need to do anything for them
+
+    } catch (error) {
+        console.error("Error processing week data:", error, data);
     }
 }
 
