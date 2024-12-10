@@ -49,24 +49,47 @@ async function countWins(startWeek, endWeek) {
 
 // Function to process data for a specific week
 function processWeekData(data, teamWins, teamManagers) {
-    if (data.rank && data.entry_name && data.player_name) {
+    if (data.rank && data.entry_name && data.player_name && data.points) {
+        const teamsWithPoints = [];
+
+        // Gather top 3 teams with their points, rank, team name, and manager
         Object.keys(data.rank).forEach(key => {
             const rank = data.rank[key];
-            const teamName = data.entry_name[key];
-            const managerName = data.player_name[key];
-
-            // Initialize the team entry if it does not exist
-            if (!teamWins[teamName]) {
-                teamWins[teamName] = 0;
-                teamManagers[teamName] = managerName;
+            if (rank <= 3) { // Only consider top 3 teams
+                teamsWithPoints.push({
+                    rank,
+                    teamName: data.entry_name[key],
+                    managerName: data.player_name[key],
+                    points: data.points[key],
+                });
             }
+        });
 
-            if (rank === 1) teamWins[teamName] += 1; // Count this team as a win for being ranked 1
+        // Group teams with the same points
+        const pointsMap = teamsWithPoints.reduce((map, team) => {
+            if (!map[team.points]) {
+                map[team.points] = [];
+            }
+            map[team.points].push(team);
+            return map;
+        }, {});
+
+        // Assign fractional wins for teams with the same points
+        Object.values(pointsMap).forEach(teams => {
+            const winShare = 1 / teams.length; // Split win among tied teams
+            teams.forEach(({ teamName, managerName }) => {
+                if (!teamWins[teamName]) {
+                    teamWins[teamName] = 0;
+                    teamManagers[teamName] = managerName;
+                }
+                teamWins[teamName] += winShare;
+            });
         });
     } else {
         console.error('Data format is incorrect:', data);
     }
 }
+
 
 // Function to display results in the HTML table
 function displayResults(teamWins, teamManagers) {
