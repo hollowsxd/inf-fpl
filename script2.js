@@ -48,6 +48,7 @@ async function countWins(startWeek, endWeek) {
 }
 
 // Function to process data for a specific week
+// Function to process week data and count wins
 function processWeekData(data, teamWins, teamManagers) {
     if (!data.event_total || !data.entry_name || !data.player_name) {
         console.error("Data is missing required properties:", data);
@@ -57,6 +58,7 @@ function processWeekData(data, teamWins, teamManagers) {
     const pointsMap = {};
     const rankOnePoints = data.event_total[data.rank[0]];  // Points of the rank 1 team
     const rankOneTeams = [];
+    const gameweekWins = new Set(); // Track which teams have been awarded wins this week
 
     try {
         // Group teams by their points
@@ -80,20 +82,26 @@ function processWeekData(data, teamWins, teamManagers) {
         if (rankOneTeams.length > 1) {
             const winShare = 1 / rankOneTeams.length;  // Fractional win for rank 1 teams
             rankOneTeams.forEach(({ teamName, managerName }) => {
-                if (!teamWins[teamName]) {
-                    teamWins[teamName] = 0;
-                    teamManagers[teamName] = managerName;
+                if (!gameweekWins.has(teamName)) { // Ensure a team only gets a win once per week
+                    if (!teamWins[teamName]) {
+                        teamWins[teamName] = 0;
+                        teamManagers[teamName] = managerName;
+                    }
+                    teamWins[teamName] += winShare;
+                    gameweekWins.add(teamName); // Mark this team as having received a win
                 }
-                teamWins[teamName] += winShare;
             });
         } else {
             // Only the rank 1 team gets the full win
             const rankOneTeam = rankOneTeams[0];
-            if (!teamWins[rankOneTeam.teamName]) {
-                teamWins[rankOneTeam.teamName] = 0;
-                teamManagers[rankOneTeam.teamName] = rankOneTeam.managerName;
+            if (!gameweekWins.has(rankOneTeam.teamName)) { // Ensure a team only gets a win once per week
+                if (!teamWins[rankOneTeam.teamName]) {
+                    teamWins[rankOneTeam.teamName] = 0;
+                    teamManagers[rankOneTeam.teamName] = rankOneTeam.managerName;
+                }
+                teamWins[rankOneTeam.teamName] += 1;
+                gameweekWins.add(rankOneTeam.teamName); // Mark this team as having received a win
             }
-            teamWins[rankOneTeam.teamName] += 1;
         }
 
         // Other teams get 0 wins, no need to do anything for them
