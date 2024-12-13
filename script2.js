@@ -32,36 +32,49 @@ async function getLatestGameweek() {
 async function countWins(startWeek, endWeek) {
     const teamWins = {};
     const teamManagers = {};
-
-    const fetchPromises = []; // Array to hold promises for fetching data
+    const fetchPromises = [];
 
     for (let week = startWeek; week <= endWeek; week++) {
         const url = `${baseUrl}${week}${fileSuffix}`;
-        fetchPromises.push(fetchData(url).then(data => processWeekData(data, teamWins, teamManagers)).catch(error => console.error(`Error processing ${url}:`, error)));
+        fetchPromises.push(fetchData(url));
     }
 
-    // Wait for all fetches to complete
-    await Promise.all(fetchPromises);
+    try {
+        // Fetch all gameweek data in parallel
+        const allGameweekData = await Promise.all(fetchPromises);
 
-    // Display the results in a table
-    displayResults(teamWins, teamManagers);
+        // Process each gameweek data
+        allGameweekData.forEach(data => {
+            if (data) {
+                processWeekData(data, teamWins, teamManagers);
+            }
+        });
+
+        // Display the results
+        displayResults(teamWins, teamManagers);
+    } catch (error) {
+        console.error("Error fetching or processing gameweek data:", error);
+    }
 }
 
 // Function to process week data and count wins
 function processWeekData(data, teamWins, teamManagers) {
-    if (!data.event_total || !data.rank || !data.entry_name || !data.player_name) {
+    if (!data.event_total || !data.entry_name || !data.player_name) {
         console.error("Data is missing required properties:", data);
         return;
     }
 
     try {
-        const rankOneIndex = data.rank[0]; // Index of rank 1 team
-        const rankOnePoints = data.event_total[rankOneIndex]; // Points of rank 1 team
+        // Find the maximum points in event_total
+        const maxPoints = Math.max(...Object.values(data.event_total));
 
-        // Collect all teams with the same points as rank 1
-        const tiedTeams = Object.keys(data.event_total).filter(
-            key => data.event_total[key] === rankOnePoints
-        );
+        // Collect all teams with the maximum points
+        const tiedTeams = [];
+        for (const key in data.event_total) {
+            if (data.event_total[key] === maxPoints) {
+                tiedTeams.push(key);
+            }
+        }
 
         const winShare = 1 / tiedTeams.length; // Fractional win for each tied team
 
