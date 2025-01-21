@@ -64,7 +64,7 @@ async function fetchGameweekData(week) {
     showLoadingMessage();
     
     try {
-        const response = await fetch(url);
+        const response = await fetch(url, { cache: 'no-cache' });
         const data = await response.json();
         const results = processData(data);
         displayLeaderboard(results);
