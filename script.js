@@ -44,7 +44,7 @@ function populateDropdown(dropdown, latestGameweek) {
 // Fetch the initial gameweek from gw.txt
 async function fetchInitialGameweek() {
     try {
-        const response = await fetch('data/latestgw.txt');
+        const response = await fetch('data/latestgw.txt',{ cache: 'no-cache' });
         const text = await response.text();
         const match = text.match(/Gameweek (\d+)/);
         if (match) {
