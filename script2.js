@@ -100,7 +100,7 @@ function processWeekData(data, teamWins, teamManagers, gameweek) {
 
 // Function to display results in the HTML table
 function displayResults(teamWins, teamManagers) {
-    const latestGameweek = await getLatestGameweek()
+    const latestGameweek = getLatestGameweek()
     const resultsDiv = document.getElementById('tabContents');
     if (!resultsDiv) {
         console.error('Results container not found in the DOM.');
