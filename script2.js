@@ -107,7 +107,7 @@ function displayResults(teamWins, teamManagers) {
     }
 
     resultsDiv.innerHTML = `
-    <h1>Most Wins By Team</h1>
+    <h1>Most Wins By Team as of ${latestGameweek}</h1>
         <table class="leaderboard-table">
             <thead>
                 <tr>
