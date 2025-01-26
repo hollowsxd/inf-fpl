@@ -51,7 +51,7 @@ async function countWins(startWeek, endWeek) {
         });
 
         // Display the results
-        displayResults(teamWins, teamManagers);
+        await displayResults(teamWins, teamManagers);
     } catch (error) {
         console.error("Error fetching or processing gameweek data:", error);
     }
@@ -99,8 +99,8 @@ function processWeekData(data, teamWins, teamManagers, gameweek) {
 }
 
 // Function to display results in the HTML table
-function displayResults(teamWins, teamManagers) {
-    const latestGameweek = getLatestGameweek()
+async function displayResults(teamWins, teamManagers) {
+    const latestGameweek = await getLatestGameweek()
     const resultsDiv = document.getElementById('tabContents');
     if (!resultsDiv) {
         console.error('Results container not found in the DOM.');
