@@ -108,7 +108,7 @@ async function displayResults(teamWins, teamManagers) {
     }
 
     resultsDiv.innerHTML = `
-    <h1>Most Wins By Team as of ${latestGameweek}</h1>
+    <h1>Most Wins By Team as of Gameweek ${latestGameweek}</h1>
         <table class="leaderboard-table">
             <thead>
                 <tr>
