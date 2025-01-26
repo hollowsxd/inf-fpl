@@ -36,7 +36,7 @@ async function countWins(startWeek, endWeek) {
 
     for (let week = startWeek; week <= endWeek; week++) {
         const url = `${baseUrl}${week}${fileSuffix}`;
-        fetchPromises.push(fetchData(url));
+        fetchPromises.push(fetchData(url).then(data => ({ data, gameweek: week })));
     }
 
     try {
@@ -44,9 +44,9 @@ async function countWins(startWeek, endWeek) {
         const allGameweekData = await Promise.all(fetchPromises);
 
         // Process each gameweek data
-        allGameweekData.forEach(data => {
+        allGameweekData.forEach(({ data, gameweek }) => {
             if (data) {
-                processWeekData(data, teamWins, teamManagers);
+                processWeekData(data, teamWins, teamManagers, gameweek);
             }
         });
 
@@ -58,7 +58,7 @@ async function countWins(startWeek, endWeek) {
 }
 
 // Function to process week data and count wins
-function processWeekData(data, teamWins, teamManagers) {
+function processWeekData(data, teamWins, teamManagers, gameweek) {
     if (!data.event_total || !data.entry_name || !data.player_name) {
         console.error("Data is missing required properties:", data);
         return;
@@ -85,12 +85,13 @@ function processWeekData(data, teamWins, teamManagers) {
 
             // Initialize team wins and manager if not already present
             if (!teamWins[teamName]) {
-                teamWins[teamName] = 0;
+                teamWins[teamName] = { wins: 0, gameweeks: [] };
                 teamManagers[teamName] = managerName;
             }
 
-            // Increment the win count by the fractional value
-            teamWins[teamName] += winShare;
+            // Increment the win count by the fractional value and store the gameweek
+            teamWins[teamName].wins += winShare;
+            teamWins[teamName].gameweeks.push(gameweek);
         });
     } catch (error) {
         console.error("Error processing week data:", error, data);
@@ -125,15 +126,15 @@ function displayResults(teamWins, teamManagers) {
 // Function to generate table rows from the team wins data
 function generateTableRows(teamWins, teamManagers) {
     return Object.entries(teamWins)
-        .sort(([, aWins], [, bWins]) => bWins - aWins) // Sort by number of wins descending
-        .map(([team, wins], index) => `
+        .sort(([, aWins], [, bWins]) => bWins.wins - aWins.wins) // Sort by number of wins descending
+        .map(([team, { wins, gameweeks }], index) => `
             <tr>
                 <td>${index < 3 ? getMedalEmoji(index) : index + 1}</td>
                 <td class="team-info">
                     <span class="team-name ${index < 3 ? 'top-team' : ''}">${team}</span>
                     <div class="manager-name">${teamManagers[team]}</div>
                 </td>
-                <td class="points">${wins}</td>
+                <td class="points" title="Gameweeks: ${gameweeks.join(', ')}">${wins}</td>
             </tr>
         `).join('');
 }
