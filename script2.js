@@ -135,9 +135,38 @@ function generateTableRows(teamWins, teamManagers) {
                     <span class="team-name ${index < 3 ? 'top-team' : ''}">${team}</span>
                     <div class="manager-name">${teamManagers[team]}</div>
                 </td>
-                <td class="points" title="Gameweeks: ${gameweeks.join(', ')}">${wins}</td>
+                <td class="points" 
+                    title="Gameweeks: ${gameweeks.join(', ')}" 
+                    onmouseover="showTooltip(event, 'Gameweeks: ${gameweeks.join(', ')}')" 
+                    onmouseout="hideTooltip()" 
+                    ontouchstart="showTooltip(event, 'Gameweeks: ${gameweeks.join(', ')}')" 
+                    ontouchend="hideTooltip()">${wins}</td>
             </tr>
         `).join('');
+}
+
+// Function to show tooltip
+function showTooltip(event, text) {
+    const tooltip = document.createElement('div');
+    tooltip.className = 'tooltip';
+    tooltip.innerText = text;
+    document.body.appendChild(tooltip);
+
+    const rect = event.target.getBoundingClientRect();
+    tooltip.style.left = `${rect.left + window.scrollX}px`;
+    tooltip.style.top = `${rect.bottom + window.scrollY}px`;
+
+    // Store the tooltip element in the target element for later removal
+    event.target._tooltip = tooltip;
+}
+
+// Function to hide tooltip
+function hideTooltip(event) {
+    const tooltip = event.target && event.target._tooltip;
+    if (tooltip) {
+        tooltip.remove();
+        event.target._tooltip = null;
+    }
 }
 
 // Function to get medal emoji based on rank
