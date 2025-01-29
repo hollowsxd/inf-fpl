@@ -138,9 +138,9 @@ function generateTableRows(teamWins, teamManagers) {
                 <td class="points" 
                     title="Gameweeks: ${gameweeks.join(', ')}" 
                     onmouseover="showTooltip(event, 'Gameweeks: ${gameweeks.join(', ')}')" 
-                    onmouseout="hideTooltip()" 
+                    onmouseout="hideTooltip(event)" 
                     ontouchstart="showTooltip(event, 'Gameweeks: ${gameweeks.join(', ')}')" 
-                    ontouchend="hideTooltip()">${wins}</td>
+                    ontouchend="hideTooltip(event)">${wins}</td>
             </tr>
         `).join('');
 }
