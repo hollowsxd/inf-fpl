@@ -129,7 +129,7 @@ function generateTableRows(teamWins, teamManagers) {
     return Object.entries(teamWins)
         .sort(([, aWins], [, bWins]) => bWins.wins - aWins.wins) // Sort by number of wins descending
         .map(([team, { wins, gameweeks }], index) => `
-            <tr onclick="alert('Gameweeks won: ${gameweeks.join(', ')}')">
+            <tr onclick="showModal('Gameweeks won: ${gameweeks.join(', ')}')">
                 <td>${index < 3 ? getMedalEmoji(index) : index + 1}</td>
                 <td class="team-info">
                     <span class="team-name ${index < 3 ? 'top-team' : ''}">${team}</span>
@@ -140,29 +140,32 @@ function generateTableRows(teamWins, teamManagers) {
         `).join('');
 }
 
-// Function to show tooltip
-function showTooltip(event, text) {
-    const tooltip = document.createElement('div');
-    tooltip.className = 'tooltip';
-    tooltip.innerText = text;
-    document.body.appendChild(tooltip);
-
-    const rect = event.target.getBoundingClientRect();
-    tooltip.style.left = `${rect.left + window.scrollX}px`;
-    tooltip.style.top = `${rect.bottom + window.scrollY}px`;
-
-    // Store the tooltip element in the target element for later removal
-    event.target._tooltip = tooltip;
+// Function to show modal
+function showModal(gameweeks) {
+    const modal = document.getElementById('gameweekModal');
+    const modalGameweeks = document.getElementById('modalGameweeks');
+    modalGameweeks.textContent = gameweeks;
+    modal.style.display = "block";
 }
 
-// Function to hide tooltip
-function hideTooltip(event) {
-    const tooltip = event.target && event.target._tooltip;
-    if (tooltip) {
-        tooltip.remove();
-        event.target._tooltip = null;
+// Function to close modal
+function closeModal() {
+    const modal = document.getElementById('gameweekModal');
+    modal.style.display = "none";
+}
+
+// Close the modal when the user clicks on <span> (x)
+document.querySelector('.close').onclick = function() {
+    closeModal();
+}
+
+// Close the modal when the user clicks anywhere outside of the modal
+window.onclick = function(event) {
+    const modal = document.getElementById('gameweekModal');
+    if (event.target == modal) {
+        closeModal();
     }
-}
+
 
 // Function to get medal emoji based on rank
 function getMedalEmoji(rank) {
