@@ -76,7 +76,7 @@ h1 {
 
 .leaderboard-table thead {
     background-color: #444; /* Slightly lighter dark background */
-    color: #fff; /* White text color for headers */
+    color: #ffcc00;
 }
 
 .leaderboard-table th, .leaderboard-table td {
