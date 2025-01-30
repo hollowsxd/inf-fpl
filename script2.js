@@ -129,7 +129,7 @@ function generateTableRows(teamWins, teamManagers) {
     return Object.entries(teamWins)
         .sort(([, aWins], [, bWins]) => bWins.wins - aWins.wins) // Sort by number of wins descending
         .map(([team, { wins, gameweeks }], index) => `
-            <tr onclick="showModal('Gameweeks won: ${gameweeks.join(', ')}')">
+                <tr onclick="showModal('${team}', 'Gameweeks won: ${gameweeks.join(', ')}')">
                 <td>${index < 3 ? getMedalEmoji(index) : index + 1}</td>
                 <td class="team-info">
                     <span class="team-name ${index < 3 ? 'top-team' : ''}">${team}</span>
@@ -141,10 +141,10 @@ function generateTableRows(teamWins, teamManagers) {
 }
 
 // Function to show modal
-function showModal(gameweeks) {
+function showModal(team, gameweeks) {
     const modal = document.getElementById('gameweekModal');
     const modalGameweeks = document.getElementById('modalGameweeks');
-    modalGameweeks.textContent = gameweeks;
+    modalGameweeks.innerHTML = `<strong>${team}</strong><br>${gameweeks}`;
     modal.style.display = "block";
 }
 
