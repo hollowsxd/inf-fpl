@@ -129,18 +129,13 @@ function generateTableRows(teamWins, teamManagers) {
     return Object.entries(teamWins)
         .sort(([, aWins], [, bWins]) => bWins.wins - aWins.wins) // Sort by number of wins descending
         .map(([team, { wins, gameweeks }], index) => `
-            <tr>
+            <tr onclick="alert('Gameweeks won: ${gameweeks.join(', ')}')">
                 <td>${index < 3 ? getMedalEmoji(index) : index + 1}</td>
                 <td class="team-info">
                     <span class="team-name ${index < 3 ? 'top-team' : ''}">${team}</span>
                     <div class="manager-name">${teamManagers[team]}</div>
                 </td>
-                <td class="points" 
-                    title="Gameweeks: ${gameweeks.join(', ')}" 
-                    onmouseover="showTooltip(event, 'Gameweeks: ${gameweeks.join(', ')}')" 
-                    onmouseout="hideTooltip(event)" 
-                    ontouchstart="showTooltip(event, 'Gameweeks: ${gameweeks.join(', ')}')" 
-                    ontouchend="hideTooltip(event)">${wins}</td>
+                <td class="points">${wins}</td>
             </tr>
         `).join('');
 }
