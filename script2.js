@@ -165,7 +165,7 @@ window.onclick = function(event) {
     if (event.target == modal) {
         closeModal();
     }
-
+}
 
 // Function to get medal emoji based on rank
 function getMedalEmoji(rank) {
