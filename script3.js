@@ -1,4 +1,4 @@
-const baseUrl = 'https://raw.githubusercontent.com/hollowsxd/inf-fpl/main/data/Gameweek ';
+const bUrl = 'https://raw.githubusercontent.com/hollowsxd/inf-fpl/main/data/Gameweek ';
 const fileSuffix = ' Weekly.json';
 const latestGwUrl = 'https://raw.githubusercontent.com/hollowsxd/inf-fpl/main/data/latestgw.txt';
 
@@ -34,7 +34,7 @@ async function countNetWinnings(startWeek, endWeek) {
     const fetchPromises = [];
 
     for (let week = startWeek; week <= endWeek; week++) {
-        const url = `${baseUrl}${week}${fileSuffix}`;
+        const url = `${bUrl}${week}${fileSuffix}`;
         fetchPromises.push(fetchData(url).then(data => ({ data, gameweek: week })));
     }
 
