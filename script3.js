@@ -34,7 +34,7 @@ async function countNetWinnings(startWeek, endWeek) {
     const fetchPromises = [];
 
     for (let week = startWeek; week <= endWeek; week++) {
-        const url = `${bUrl}${week}${fileSuffix}`;
+        const url = `${baseUrl}${week}${fileSuffix}`;
         fetchPromises.push(fetchData(url).then(data => ({ data, gameweek: week })));
     }
 
