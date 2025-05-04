@@ -1,6 +1,6 @@
-const bUrl = 'https://raw.githubusercontent.com/hollowsxd/inf-fpl/main/data/Gameweek ';
-const fileSuffix = ' Weekly.json';
-const latestGwUrl = 'https://raw.githubusercontent.com/hollowsxd/inf-fpl/main/data/latestgw.txt';
+//const bUrl = 'https://raw.githubusercontent.com/hollowsxd/inf-fpl/main/data/Gameweek ';
+//const fileSuffix = ' Weekly.json';
+//const latestGwUrl = 'https://raw.githubusercontent.com/hollowsxd/inf-fpl/main/data/latestgw.txt';
 
 // Fetch JSON or text data
 async function fetchData(url, isJson = true) {
