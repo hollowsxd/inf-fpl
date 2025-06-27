@@ -31,7 +31,7 @@ async function calculateNetBalance(startWeek, endWeek) {
             key => data.event_total[key] === maxPoints
         );
 
-        console.log(`GW${week}: ${tiedKeys.length} winners`); //debug
+        console.log(`GW${gameweek}: ${tiedKeys.length} winners`); //debug
         
         const share = 75 / tiedKeys.length;
         const netShare = share - 5;
