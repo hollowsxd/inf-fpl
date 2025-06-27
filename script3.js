@@ -44,8 +44,9 @@ async function calculateNetBalance(startWeek, endWeek) {
             teamData[team].count += 1;
 
             if (tiedKeys.includes(key)) {
+                const winShare = 1 / tiedKeys.length;
                 teamData[team].winnings += share;
-                teamData[team].wins += 1;
+                teamData[team].wins += winShare;
             }
         }
     });
