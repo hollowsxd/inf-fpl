@@ -15,7 +15,7 @@ async function getLatestGameweek() {
 }
 
 async function calculateNetBalance(startWeek, endWeek) {
-    const teamData = {}; // { teamName: { manager, winnings, seen } }
+    const teamData = {}; // { teamName: { manager, winnings, count, wins } }
     const fetchPromises = [];
 
     for (let week = startWeek; week <= endWeek; week++) {
@@ -30,24 +30,22 @@ async function calculateNetBalance(startWeek, endWeek) {
         const tiedKeys = Object.keys(data.event_total).filter(
             key => data.event_total[key] === maxPoints
         );
-
-        console.log(`GW${gameweek}: ${tiedKeys.length} winners`); //debug
         
         const share = 75 / tiedKeys.length;
-        const netShare = share - 5;
 
         for (const key in data.entry_name) {
             const team = data.entry_name[key];
             const manager = data.player_name[key];
 
             if (!teamData[team]) {
-                teamData[team] = { manager, winnings: 0, count: 0 };
+                teamData[team] = { manager, winnings: 0, count: 0, wins: 0 };
             }
 
             teamData[team].count += 1;
 
             if (tiedKeys.includes(key)) {
-                teamData[team].winnings += netShare;
+                teamData[team].winnings += share;
+                teamData[team].wins += 1;
             }
         }
     });
@@ -64,20 +62,32 @@ function displayNetBalance(teamData, totalWeeks) {
             <tr>
                 <th>Rank</th>
                 <th>Team</th>
-                <th>Profit/Loss (RM)</th>
+                <th>GW Played</th>
+                <th>GW Won</th>
+                <th>Total RM Won</th>
+                <th>Total RM Paid</th>
+                <th>Net Balance (RM)</th>
             </tr>
         </thead>
         <tbody>
-            ${generateNetBalanceRows(teamData, totalWeeks)}
+            ${generateNetBalanceRows(teamData)}
         </tbody>
     </table>`;
 }
 
-function generateNetBalanceRows(teamData, totalWeeks) {
+function generateNetBalanceRows(teamData) {
     const entries = Object.entries(teamData).map(([team, data]) => {
-        const totalPaid = totalWeeks * 5;
+        const totalPaid = data.count * 5;
         const netBalance = data.winnings - totalPaid;
-        return { team, manager: data.manager, net: netBalance };
+        return {
+            team,
+            manager: data.manager,
+            count: data.count,
+            wins: data.wins,
+            winnings: data.winnings,
+            paid: totalPaid,
+            net: netBalance
+        };
     });
 
     return entries
@@ -89,6 +99,10 @@ function generateNetBalanceRows(teamData, totalWeeks) {
                     <span class="team-name ${index < 3 ? 'top-team' : ''}">${entry.team}</span>
                     <div class="manager-name">${entry.manager}</div>
                 </td>
+                <td>${entry.count}</td>
+                <td>${entry.wins}</td>
+                <td class="points profit">RM ${entry.winnings.toFixed(2)}</td>
+                <td class="points loss">RM ${entry.paid.toFixed(2)}</td>
                 <td class="points ${entry.net >= 0 ? 'profit' : 'loss'}">
                     RM ${entry.net.toFixed(2)}
                 </td>
