@@ -53,14 +53,14 @@ async function fetchInitialGameweek() {
             throw new Error('Invalid content in gw.txt');
         }
     } catch (error) {
-        console.error('Error fetching gw.txt:', error);
+        console.error('Error fetching latestgw.txt:', error);
         throw error;
     }
 }
 
 // Fetch and display data for the selected gameweek
 async function fetchGameweekData(week) {
-    const url = `data/Gameweek ${week} Weekly.json`; // URL to fetch JSON data for the selected gameweek
+    const url = `data/2526/Gameweek ${week} Weekly.json`; // URL to fetch JSON data for the selected gameweek
     showLoadingMessage();
     
     try {
