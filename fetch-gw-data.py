@@ -5,11 +5,11 @@ import pandas as pd
 base_url = 'https://fantasy.premierleague.com/api/'
 
 # Get data from IFL Weekly
-getweekly = requests.get(base_url+'leagues-classic/1624991/standings/').json()
+getweekly = requests.get(base_url+'leagues-classic/1469735/standings/').json()
 gw = getweekly['standings']
 
 # Get data from IFL Yearly
-getyearly = requests.get(base_url+'leagues-classic/1625087/standings/').json()
+getyearly = requests.get(base_url+'leagues-classic/1469921/standings/').json()
 gy = getyearly['standings']
 
 # Get current gameweek
