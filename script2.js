@@ -1,5 +1,5 @@
 // Base URL for the JSON files and latest gameweek text file
-const baseUrl = 'https://raw.githubusercontent.com/hollowsxd/inf-fpl/main/data/Gameweek ';
+const baseUrl = 'https://raw.githubusercontent.com/hollowsxd/inf-fpl/main/data/2526/Gameweek ';
 const fileSuffix = ' Weekly.json';
 const latestGwUrl = 'https://raw.githubusercontent.com/hollowsxd/inf-fpl/main/data/latestgw.txt';
 
