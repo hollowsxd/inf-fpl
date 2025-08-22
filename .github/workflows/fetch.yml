@@ -34,7 +34,7 @@ jobs:
         # Move or ensure output is in the 'data/' folder
       - name: Move output to data folder
         run: |
-          mkdir -p data
+          mkdir -p data/2526
           mv Gameweek*.json data/ || true
           mv latestgw.txt data/ || true
 
