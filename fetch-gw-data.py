@@ -30,8 +30,8 @@ getyearlytop = pd.json_normalize(gy['results'])
 getyearlytopresult = getyearlytop[['rank', 'entry_name', 'player_name', 'total']]
 
 # Save to file
-getweeklytopresult.to_json(cgws, index=False)
-getyearlytopresult.to_json(cgwy, index=False)
+getweeklytopresult.to_json(cgws, index=False, indent=4)
+getyearlytopresult.to_json(cgwy, index=False, indent=4)
 with open ('latestgw.txt', 'w') as file:
   file.write(currentgw)
 
