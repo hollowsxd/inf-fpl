@@ -1,1 +1,62 @@
-{"rank":{"0":1,"1":2,"2":3,"3":4,"4":5,"5":6,"6":7,"7":8,"8":9,"9":10,"10":11,"11":12,"12":13},"entry_name":{"0":"V.Gyokeres fc","1":"Cem Fc","2":"Boboiboy Gentar","3":"bukanSalahku","4":"Laksamana FC","5":"Nippon Taqara","6":"LPT fighter","7":"RojakkingFC","8":"BetrayerFC","9":"Gunners fc","10":"Yakkyakkyeah","11":"Goyangdek","12":"KuiFutball"},"player_name":{"0":"ozool ismail","1":"Rasyid Razak","2":"Hafiz Ismail","3":"Zarif Zakwan","4":"Laksamana Football Club","5":"Muhamad Syahir Abu Bakar","6":"Lantoi Bkc","7":"Mohd Shahzani Ali","8":"Han Takiya","9":"dukun zai","10":"Ike Singge","11":"Master Finger","12":"Kuwie Mans"},"total":{"0":119,"1":116,"2":108,"3":101,"4":96,"5":87,"6":84,"7":84,"8":84,"9":78,"10":77,"11":76,"12":69}}
+{
+    "rank":{
+        "0":1,
+        "1":2,
+        "2":3,
+        "3":4,
+        "4":5,
+        "5":6,
+        "6":7,
+        "7":8,
+        "8":9,
+        "9":10,
+        "10":11,
+        "11":12,
+        "12":13
+    },
+    "entry_name":{
+        "0":"V.Gyokeres fc",
+        "1":"Cem Fc",
+        "2":"Boboiboy Gentar",
+        "3":"bukanSalahku",
+        "4":"Laksamana FC",
+        "5":"Nippon Taqara",
+        "6":"LPT fighter",
+        "7":"RojakkingFC",
+        "8":"BetrayerFC",
+        "9":"Gunners fc",
+        "10":"Yakkyakkyeah",
+        "11":"Goyangdek",
+        "12":"KuiFutball"
+    },
+    "player_name":{
+        "0":"ozool ismail",
+        "1":"Rasyid Razak",
+        "2":"Hafiz Ismail",
+        "3":"Zarif Zakwan",
+        "4":"Laksamana Football Club",
+        "5":"Muhamad Syahir Abu Bakar",
+        "6":"Lantoi Bkc",
+        "7":"Mohd Shahzani Ali",
+        "8":"Han Takiya",
+        "9":"dukun zai",
+        "10":"Ike Singge",
+        "11":"Master Finger",
+        "12":"Kuwie Mans"
+    },
+    "total":{
+        "0":119,
+        "1":116,
+        "2":108,
+        "3":101,
+        "4":96,
+        "5":87,
+        "6":84,
+        "7":84,
+        "8":84,
+        "9":78,
+        "10":77,
+        "11":76,
+        "12":69
+    }
+}
