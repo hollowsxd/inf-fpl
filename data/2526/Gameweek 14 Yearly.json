@@ -26,8 +26,8 @@
         "8":"LPT fighter",
         "9":"BetrayerFC",
         "10":"Laksamana FC",
-        "11":"KuiFutball",
-        "12":"Goyangdek"
+        "11":"Goyangdek",
+        "12":"KuiFutball"
     },
     "player_name":{
         "0":"Zarif Zakwan",
@@ -41,22 +41,22 @@
         "8":"Lantoi Bkc",
         "9":"Han Takiya",
         "10":"Laksamana Football Club",
-        "11":"Kuwie Mans",
-        "12":"Master Finger"
+        "11":"Master Finger",
+        "12":"Kuwie Mans"
     },
     "total":{
-        "0":778,
-        "1":762,
-        "2":746,
-        "3":725,
-        "4":692,
-        "5":676,
-        "6":655,
-        "7":642,
-        "8":606,
-        "9":604,
-        "10":592,
-        "11":573,
-        "12":562
+        "0":811,
+        "1":805,
+        "2":775,
+        "3":753,
+        "4":736,
+        "5":711,
+        "6":671,
+        "7":670,
+        "8":652,
+        "9":632,
+        "10":615,
+        "11":590,
+        "12":589
     }
 }
