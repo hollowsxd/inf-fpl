@@ -1,0 +1,62 @@
+{
+    "rank":{
+        "0":1,
+        "1":2,
+        "2":3,
+        "3":4,
+        "4":5,
+        "5":6,
+        "6":6,
+        "7":8,
+        "8":9,
+        "9":10,
+        "10":11,
+        "11":12,
+        "12":13
+    },
+    "entry_name":{
+        "0":"Boboiboy Gentar",
+        "1":"Laksamana FC",
+        "2":"Gunners fc",
+        "3":"Nippon Taqara",
+        "4":"Cem Fc",
+        "5":"RojakkingFC",
+        "6":"V.Gyokeres fc",
+        "7":"bukanSalahku",
+        "8":"BetrayerFC",
+        "9":"Goyangdek",
+        "10":"LPT fighter",
+        "11":"Yakkyakkyeah",
+        "12":"KuiFutball"
+    },
+    "player_name":{
+        "0":"Hafiz Ismail",
+        "1":"Laksamana Football Club",
+        "2":"dukun zai",
+        "3":"Muhamad Syahir Abu Bakar",
+        "4":"Rasyid Razak",
+        "5":"Mohd Shahzani Ali",
+        "6":"ozool ismail",
+        "7":"Zarif Zakwan",
+        "8":"Han Takiya",
+        "9":"Master Finger",
+        "10":"Lantoi Bkc",
+        "11":"Ike Singge",
+        "12":"Kuwie Mans"
+    },
+    "event_total":{
+        "0":29,
+        "1":20,
+        "2":30,
+        "3":16,
+        "4":23,
+        "5":32,
+        "6":20,
+        "7":24,
+        "8":24,
+        "9":30,
+        "10":33,
+        "11":20,
+        "12":21
+    }
+}
