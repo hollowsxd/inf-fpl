@@ -15,8 +15,8 @@
         "12":13
     },
     "entry_name":{
-        "0":"bukanSalahku",
-        "1":"Nippon Taqara",
+        "0":"Nippon Taqara",
+        "1":"bukanSalahku",
         "2":"V.Gyokeres fc",
         "3":"Cem Fc",
         "4":"RojakkingFC",
@@ -30,8 +30,8 @@
         "12":"Goyangdek"
     },
     "player_name":{
-        "0":"Zarif Zakwan",
-        "1":"Muhamad Syahir Abu Bakar",
+        "0":"Muhamad Syahir Abu Bakar",
+        "1":"Zarif Zakwan",
         "2":"ozool ismail",
         "3":"Rasyid Razak",
         "4":"Mohd Shahzani Ali",
@@ -45,18 +45,18 @@
         "12":"Master Finger"
     },
     "total":{
-        "0":1427,
-        "1":1425,
-        "2":1412,
-        "3":1324,
-        "4":1283,
-        "5":1266,
-        "6":1263,
-        "7":1243,
-        "8":1223,
-        "9":1210,
-        "10":1173,
-        "11":1170,
-        "12":1147
+        "0":1445,
+        "1":1438,
+        "2":1423,
+        "3":1337,
+        "4":1296,
+        "5":1285,
+        "6":1282,
+        "7":1270,
+        "8":1236,
+        "9":1231,
+        "10":1210,
+        "11":1208,
+        "12":1167
     }
 }
