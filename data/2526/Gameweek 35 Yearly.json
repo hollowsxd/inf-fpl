@@ -17,8 +17,8 @@
     "entry_name":{
         "0":"bukanSalahku",
         "1":"V.Gyokeres fc",
-        "2":"Gunners fc",
-        "3":"Cem Fc",
+        "2":"Cem Fc",
+        "3":"Gunners fc",
         "4":"RojakkingFC",
         "5":"Nippon Taqara",
         "6":"LPT fighter",
@@ -32,8 +32,8 @@
     "player_name":{
         "0":"Zarif Zakwan",
         "1":"ozool ismail",
-        "2":"dukun zai",
-        "3":"Rasyid Razak",
+        "2":"Rasyid Razak",
+        "3":"dukun zai",
         "4":"Mohd Shahzani Ali",
         "5":"Muhamad Syahir Abu Bakar",
         "6":"Lantoi Bkc",
@@ -45,18 +45,18 @@
         "12":"Master Finger"
     },
     "total":{
-        "0":2026,
-        "1":1999,
-        "2":1876,
-        "3":1874,
-        "4":1869,
-        "5":1866,
-        "6":1836,
-        "7":1789,
-        "8":1783,
-        "9":1671,
-        "10":1648,
-        "11":1644,
-        "12":1570
+        "0":2041,
+        "1":2003,
+        "2":1887,
+        "3":1887,
+        "4":1885,
+        "5":1879,
+        "6":1844,
+        "7":1823,
+        "8":1797,
+        "9":1685,
+        "10":1662,
+        "11":1658,
+        "12":1576
     }
 }
