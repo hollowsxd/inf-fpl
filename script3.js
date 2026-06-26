@@ -15,7 +15,7 @@ async function getLatestGameweek() {
 }
 
 async function calculateNetBalance(startWeek, endWeek) {
-    const teamData = {}; // { teamName: { manager, winnings, count, wins } }
+    const teamData = {}; 
     const fetchPromises = [];
 
     for (let week = startWeek; week <= endWeek; week++) {
@@ -26,12 +26,15 @@ async function calculateNetBalance(startWeek, endWeek) {
     const allData = await Promise.all(fetchPromises);
 
     allData.forEach(({ data }) => {
+        const totalEntries = Object.keys(data.event_total).length;
+        const totalPool = totalEntries * 5; 
+
         const maxPoints = Math.max(...Object.values(data.event_total));
         const tiedKeys = Object.keys(data.event_total).filter(
             key => data.event_total[key] === maxPoints
         );
         
-        const share = 75 / tiedKeys.length;
+        const share = totalPool / tiedKeys.length;
 
         for (const key in data.entry_name) {
             const team = data.entry_name[key];
