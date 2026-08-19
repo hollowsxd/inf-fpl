@@ -15,10 +15,10 @@ jobs:
 
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: '3.x'  # Specify the version of Python you want to use
           cache: 'pip' # Enable pip cache
@@ -34,8 +34,8 @@ jobs:
         # Move or ensure output is in the 'data/' folder
       - name: Move output to data folder
         run: |
-          mkdir -p data/2526
-          mv Gameweek*.json data/2526/ || true
+          mkdir -p data/2627
+          mv Gameweek*.json data/2627/ || true
           mv latestgw.txt data/ || true
 
       - name: Commit and push changes
@@ -43,21 +43,21 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add data/latestgw.txt
-          git add data/2526/
+          git add data/2627/
           git diff --cached --quiet || git commit -m "Weekly data fetch"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub's token to authenticate push
 
       - name: Setup Pages     
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
         
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           # Upload entire repository
           path: '.'
           
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
