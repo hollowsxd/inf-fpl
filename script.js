@@ -60,7 +60,7 @@ async function fetchInitialGameweek() {
 
 // Fetch and display data for the selected gameweek
 async function fetchGameweekData(week) {
-    const url = `data/2526/Gameweek ${week} Weekly.json`; // URL to fetch JSON data for the selected gameweek
+    const url = `data/2627/Gameweek ${week} Weekly.json`; // URL to fetch JSON data for the selected gameweek
     showLoadingMessage();
     
     try {
